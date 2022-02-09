@@ -37,7 +37,7 @@ body{
 }
 
 .button{
-  background-color: var(--purple);
+  background-color: var(--pink);
   padding: 3vw;
   border-radius: 15px;
 }

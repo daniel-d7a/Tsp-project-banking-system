@@ -1,0 +1,62 @@
+:root{
+  --very-dark-purple : #2f3662;
+  --dark-purple : #4d3e93;
+  --purple : #914bbb;
+  --pink : #f476b8;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows:50px repeat(5, 1fr) 50px;
+  height: 100vh;
+  background-color: var(--very-dark-purple);
+  color: white;
+}
+
+.home-page-main{
+  grid-row: 3 / 6;
+  grid-column: 2 / 7;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  padding: 2vw;
+  border-radius: 10px;
+  background-color: var(--dark-purple);
+}
+
+.button{
+  background-color: var(--purple);
+  padding: 3vw;
+  border-radius: 15px;
+}
+
+nav{
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-purple);
+}
+
+footer{
+  grid-row: 7 / span 1;
+  grid-column: 1 / span 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-purple);
+
+}

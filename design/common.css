@@ -44,3 +44,17 @@ footer{
   justify-content: center;
   background-color: var(--dark-purple);
 }
+
+
+.home{
+  background-color: var(--pink);
+  border-radius: 10px;
+  padding: 0.5vw;
+  position: relative;
+  left: 40%;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}

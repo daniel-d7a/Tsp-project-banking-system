@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/daniel-d7a/Tsp-project-banking-system#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
     "mongoose": "^6.2.1"
   }
 }

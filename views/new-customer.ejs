@@ -12,16 +12,16 @@
 </head>
 <body>
   
-    <nav>Basic Banking System
+    <nav>Enter Data of new Customer
     <a href="../home-page" class="home">home</a>
   </nav>
-  <form action="customers" method="post">
+  <form action="home-page" method="post">
     <label for="name">Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" required>
     <label for="name">Email</label>
-    <input type="email" name="email">
+    <input type="email" name="email" required>
     <label for="name">Initial amount</label>
-    <input type="number" name="amount" min="0">
+    <input type="number" name="amount" min="0" required>
     <input type="submit" value="submit">
   </form>
   <footer>made with love by Eyad alsherif</footer>

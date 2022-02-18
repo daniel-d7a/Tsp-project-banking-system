@@ -9,21 +9,20 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
-		<title>Document</title>
+		<title>Customers</title>
 	</head>
 	<body>
 		<nav>
-			<p>Basic Banking System</p>
+			<p>Choose a customer to send money from them</p>
 			<a href="home-page" class="home">home</a>
 		</nav>
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Amount</th>
-				</tr>
-			</thead>
+	<div class="table">
+      <div class="table-head">
+        <div>From</div>
+        <div>To</div>
+        <div>Amount</div>
+      </div>
+			<table>
 			<tbody>
 				<% if(result.length > 0){%> <%result.forEach(user=>{ %>
 				<tr>
@@ -36,6 +35,7 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
 		<footer>made with love by Eyad Alsherif</footer>
 	</body>
 </html>

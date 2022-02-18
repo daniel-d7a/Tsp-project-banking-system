@@ -135,7 +135,8 @@ app.post("/transactions", (req, res) => {
 					transaction
 						.save()
 						.then(() => {
-							res.redirect("/transactions");
+							alert("amount sent successfully");
+							res.redirect("/");
 						})
 						.catch((err) => {
 							console.log(err);
@@ -147,10 +148,11 @@ app.post("/transactions", (req, res) => {
 });
 
 
-app.post("/customers", (req, res) => {
+app.post("/home-page", (req, res) => {
 	const newCustomer = new Customer(req.body);
 	newCustomer.save()
 		.then(() => {
-			res.redirect("customers");
+			// alert("new customer created successfully");
+			res.redirect("/");
 	});
 })

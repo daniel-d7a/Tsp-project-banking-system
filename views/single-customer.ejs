@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 
-  <title>Document</title>
+  <title>Customer Details</title>
 </head>
 <body>
-  <nav>Basic Banking System
+  <nav><%=singleCustomer.name%>'s Details and past transactions
     <a href="../home-page" class="home">home</a>
   </nav>
   <div class="single-customer-main" id="main">
@@ -65,7 +65,7 @@
       <%}%>
     </select>
     <label for="amount">Enter amount</label>
-    <input type="number" name="amount" id="num-input" min="1" max=<%=singleCustomer.amount%>> <!--max=<%=singleCustomer.amount%>-->
+    <input type="number" name="amount" id="num-input" required min="1" max=<%=singleCustomer.amount%>> <!--max=<%=singleCustomer.amount%>-->
     <input type="hidden" name="from" value=<%= singleCustomer.name%>>
     <input type="hidden" name="from_id" value=<%= singleCustomer._id%>>
     <input type="submit" value="Send amount" id="submit">

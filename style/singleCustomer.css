@@ -29,6 +29,10 @@
   margin-bottom: 10px;
 }
 
+.value{
+  word-break: break-all;
+}
+
 .fields{
   grid-template-columns: 1 / span 1;
   grid-row: 1 / span 4;
@@ -90,7 +94,7 @@ td{
   padding: 15px;
   transition: all 0.5s;
   border-bottom: 3px solid var(--very-dark-grey);
-  width: 250px;
+  width: 800px;
 }
 
 
@@ -140,6 +144,7 @@ input[type=text], input[type=number], select {
   width: 400px;
   padding: 20px;
   font-size: 20px;
+  margin-bottom: 30px;
 }
 input[type=submit]{
   padding: 15px 25px;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../form.css" />
+		<link rel="stylesheet" href="../../common.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form action="../transactions" method="post" id="transfer-form">
+			<div>
+				<label for="to"> Select customer</label>
+				<select name="to" id="select">
+					<% if(allCustomers.length > 0){%> <%allCustomers.forEach(customer=>{%>
+					  <option value=<%= customer.name %> </option>
+					<%})%> 
+          <%}%>
+				</select>
+			</div>
+			<div>
+				<label for="amount">Enter amount</label>
+				<input type="number" name="amount" id="num-input" />
+			</div>
+			<input type="hidden" name="from" value=<%=singleCustomer.name %>/>
+			<input type="submit" value="Send amount" />
+		</form>
+		<footer>made with love by Eyad alsherif</footer>
+
+		<script src="../form.js"></script>
+	</body>
+</html>

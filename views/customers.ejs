@@ -4,8 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./table.css" />
+		<link rel="stylesheet" href="./customer-table.css" />
 		<link rel="stylesheet" href="./common.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
 		<title>Document</title>
 	</head>
 	<body>
@@ -16,16 +19,16 @@
 		<table>
 			<thead>
 				<tr>
-					<th>name</th>
-					<th>email</th>
-					<th>amount</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Amount</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% if(result.length > 0){%> <%result.forEach(user=>{ %>
 				<tr>
-				<td>
-					<a href="./single-customer/<%=user._id%>"> <%= user.name%> </a>
+				<td onclick = 'location.href="./single-customer/<%=user._id%>"'>
+					<%= user.name%>
 				</td>
 				<td><%= user.email%></td>
 				<td>$<%= user.amount%></td>

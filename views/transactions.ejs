@@ -4,34 +4,37 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./table.css" />
+		<link rel="stylesheet" href="./transaction-table.css" />
 		<link rel="stylesheet" href="./common.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 		<title>Document</title>
 	</head>
 	<body>
 		<nav>
 			<p>Basic Banking System</p>
 			<a href="home-page" class="home">home</a>
-		</nav>
-		<table>
-			<thead>
-				<tr>
-					<th>from</th>
-					<th>to</th>
-					<th>amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% if(result.length > 0){%> <%result.forEach(transaction=>{ %>
-				<tr>
-					<td><%= transaction.from%></td>
-					<td><%= transaction.to%></td>
-					<td>$<%= transaction.amount%></td>
-					<%})%>
-				</tr>
-				<%}%>
-			</tbody>
-		</table>
+		</nav>   
+		<div class="table">
+      <div class="table-head">
+        <div>From</div>
+        <div>To</div>
+        <div>Amount</div>
+      </div>
+      <table>
+        <tbody>
+          <% if(result.length > 0){%> <%result.forEach(transaction=>{ %>
+          <tr>
+            <td><%= transaction.from%></td>
+            <td><%= transaction.to%></td>
+            <td>$<%= transaction.amount%></td>
+            <%})%>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
 		<footer>made with love by Eyad Alsherif</footer>
 	</body>
 </html>

@@ -6,48 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../singleCustomer.css">
   <link rel="stylesheet" href="../common.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
   <title>Document</title>
 </head>
 <body>
-  <nav>Basic Banking System</nav>
+  <nav>Basic Banking System
+    <a href="../home-page" class="home">home</a>
+  </nav>
   <div class="single-customer-main" id="main">
-    <div class="name container">
-      <p class="key"> Name </p>
-      <p class="value"><%= singleCustomer.name%></p>
+    <div class="fields">
+      <div class="name container">
+        <p class="key"> Name </p>
+        <p class="value"><%= singleCustomer.name%></p>
+      </div>
+      <div class="email container">
+        <p class="key"> Email </p>
+        <p class="value"><%= singleCustomer.email%></p>
+      </div>
+      <div class="amount container">
+        <p class="key"> Amount </p>
+        <p class="value">$<%= singleCustomer.amount%></p>
+      </div>
     </div>
-    <div class="email container">
-      <p class="key"> Email </p>
-      <p class="value"><%= singleCustomer.email%></p>
+    <div class="table">
+      <div class="table-head">
+        <div>From</div>
+        <div>To</div>
+        <div>Amount</div>
+      </div>
+      <table>
+        <tbody>
+          <% if(customerTransactions.length > 0){%> <%customerTransactions.forEach(transaction=>{ %>
+          <tr>
+            <td><%= transaction.from%></td>
+            <td><%= transaction.to%></td>
+            <td>$<%= transaction.amount%></td>
+            <%})%>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
     </div>
-    <div class="amount container">
-      <p class="key"> Amount </p>
-      <p class="value">$<%= singleCustomer.amount%></p>
-    </div>
-    <div class="transfer container" id="btn" href="./form.ejs">
+    <div class="transfer" id="btn" href="./form.ejs">
       <p>transfer money</p>
     </div>
   </div>
   <form action="../transactions" method="post" id="form">
-    <div>
-      <label for="to_id"> Select customer</label>
-      <select name="to_id" id="select">
-        <% if(allCustomers.length > 0){%> <%allCustomers.forEach(customer=>{ %>
-          <%if (!(customer._id === singleCustomer._id)){%>
-          <option value=<%=customer._id%>>
-            <%= customer.name %>
-          </option>
-        <%}%> <%})%>
-        <%}%>
-      </select>
-    </div>
-    <div>
-      <label for="amount">Enter amount</label>
-      <input type="number" name="amount" id="num-input">
-    </div>
-
+    <label for="to_id"> Select customer</label>
+    <select name="to_id" id="select">
+      <% if(allCustomers.length > 0){%> <%allCustomers.forEach(customer=>{ %>
+        <%if (!(customer._id === singleCustomer._id)){%>
+        <option value=<%=customer._id%>>
+          <%= customer.name %>
+        </option>
+      <%}%> <%})%>
+      <%}%>
+    </select>
+    <label for="amount">Enter amount</label>
+    <input type="number" name="amount" id="num-input" min="1" max=<%=singleCustomer.amount%>> <!--max=<%=singleCustomer.amount%>-->
     <input type="hidden" name="from" value=<%= singleCustomer.name%>>
     <input type="hidden" name="from_id" value=<%= singleCustomer._id%>>
-    <input type="submit" value="Send amount">
+    <input type="submit" value="Send amount" id="submit">
 
   </form>
   <footer>made with love by Eyad alsherif</footer>

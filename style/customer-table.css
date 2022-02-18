@@ -1,0 +1,53 @@
+table{
+  border-collapse: collapse; 
+  width: 100%;
+  grid-column: 2 / span 5;
+  margin-top: 1.5vw;
+  background-color: var(--not-so-dark-grey);
+  border-radius: 15px;
+}
+td{
+  text-align: center;
+}
+th, td{
+  padding: 15px;
+  transition: padding 0.5s;
+}
+td[onclick]:hover {
+  text-decoration: underline;
+}
+a.home:hover{
+  text-decoration: none;
+}
+td{
+  border-bottom: 5px solid var(--very-dark-grey);
+}
+th{
+  border-bottom: 5px solid var(--very-dark-grey);
+  background-color: var(--btn-blue);
+}
+th:first-child{
+  border-top-left-radius: 15px;
+}
+th:last-child{
+  border-top-right-radius: 15px;
+}
+tr:last-child td:first-child{
+  border-bottom-left-radius: 15px;
+}
+tr:last-child td:last-child{
+  border-bottom-right-radius: 15px;
+}
+td:first-child{
+  cursor: pointer;
+}
+td:hover{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+tr:hover{
+  background-color: #777;
+}
+thead:hover th{
+  background-color: var(--btn-hover-blue);
+}

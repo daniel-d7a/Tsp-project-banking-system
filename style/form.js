@@ -1,12 +1,10 @@
-let main = document.getElementById("main");
-let form = document.getElementById("form");
-let btn = document.getElementById("btn");
 
-// console.log("script working");
+let tranferBtn = document.getElementById("btn")
+let form = document.getElementById("form")
+let main = document.getElementById('main')
 
-btn.onclick = function () {
-	// console.log("button pressed");
-	form.style.display = "flex";
-	main.style.display = "none";
-	// btn.style.backgroundColor = "red";
-};
+tranferBtn.onclick = function () {
+  form.style.display = 'block';
+  main.style.display = 'none';
+}
+

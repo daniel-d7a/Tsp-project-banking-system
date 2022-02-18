@@ -2,20 +2,35 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Customer = require("./models/customer");
 const Transaction = require("./models/transaction");
+const path = require('path')
+const livereload = require("livereload");
+const connectLivereload = require("connect-livereload");
+
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, "style"));
+liveReloadServer.server.once("connection", () => {
+	setTimeout(() => {
+		liveReloadServer.refresh("/");
+	}, 100);
+});
+
 
 const app = express();
 
 const database =
-	"mongodb+srv://eyad-alsherif:dodomax12345@tsf-project.xjlsh.mongodb.net/tsf-project?retryWrites=true&w=majority";
+"mongodb+srv://eyad-alsherif:dodomax12345@tsf-project.xjlsh.mongodb.net/tsf-project?retryWrites=true&w=majority";
 
 mongoose
-	.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then((result) => app.listen(5500))
-	.catch((err) => console.log(err));
+.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+.then((result) => app.listen(5000))
+.catch((err) => console.log(err));
+
 
 app.set("view engine", "ejs");
+app.use(connectLivereload());
 app.use(express.static("style"));
 app.use(express.urlencoded({ extended: true }));
+
 
 const bodyParser = require("body-parser");
 
@@ -45,6 +60,10 @@ app.get("/customers", (req, res) => {
 		});
 });
 
+app.get("/new-customer", (req, res) => {
+	res.render('new-customer')
+})
+
 app.get("/transactions", (req, res) => {
 	Transaction.find()
 		.sort({ createdAt: -1 })
@@ -63,7 +82,14 @@ app.get("/single-customer/:id", (req, res) => {
 		.then((singleCustomer) => {
 			Customer.find({ _id: { $ne: id } })
 				.then((allCustomers) => {
-					res.render("single-customer", { singleCustomer, allCustomers });
+					Transaction.find({
+						$or: [
+							{ to_id: id },
+							{from_id:id}
+						]
+					}).then((customerTransactions) => {
+						res.render("single-customer", { singleCustomer, allCustomers, customerTransactions });
+					})
 				})
 				.catch((error) => {
 					console.log(err);
@@ -89,12 +115,13 @@ app.post("/transactions", (req, res) => {
 			Customer.find()
 				.then((customers) => {
 					customers.forEach((customer) => {
-						if (transaction.to_id === customer._id) {
-							console.log("to id is corrrect");
+						// console.log(customer);
+						if (transaction.to_id.toString() === customer._id.toString()) {
+							// console.log("to id is corrrect");
 							transaction['to'] = customer.name.toString();
 						}
-						if (transaction.from_id === customer._id) {
-							console.log("from id is corrrect");
+						if (transaction.from_id.toString() === customer._id.toString()) {
+							// console.log("from id is corrrect");
 							transaction["from"] = customer.name.toString();
 						}
 					});
@@ -113,3 +140,15 @@ app.post("/transactions", (req, res) => {
 		});
 	});
 });
+
+
+app.post("/customers", (req, res) => {
+	const newCustomer = new Customer(req.body);
+	newCustomer.save()
+		.then(() => {
+		res.redirect("customers").catch((err) => {
+			console.log(err);
+			res.render("error");
+		});
+	});
+})

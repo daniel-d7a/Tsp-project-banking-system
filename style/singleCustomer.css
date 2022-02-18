@@ -3,73 +3,152 @@
   grid-row: 2 / 7;
   grid-column: 2 / 7;
   display: grid;
-  grid-template-columns: 50px repeat(3, 1fr) 50px;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px 10px;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr) 50px;
   padding: 2vw;
   border-radius: 10px;
   margin: 15px;
-  background-color: var(--dark-purple);
+  background-color: var(--not-so-dark-grey);
 }
 
 .container{
-  border-radius: 15px;
-  background-color: var(--purple);
+  border-radius: 5px;
+  background-color: var(--dark-blue);
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  padding: 20px;
+  width: 200px;
+  height: 100px;
+}
+.key{
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid var(--btn-blue);
+  margin-bottom: 10px;
 }
 
-.name{
-  grid-row: 1 / span 1; 
-  grid-column: 2 / span 3; 
+.fields{
+  grid-template-columns: 1 / span 1;
+  grid-row: 1 / span 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
-.email{
-  grid-row: 2 / span 1; 
-  grid-column: 2 / span 3; 
-}
-.amount{
-  grid-row: 3 / span 1; 
-  grid-column: 2 / span 2; 
-}
-.transfer{
-  grid-row: 3 / span 1; 
+
+#btn{
   grid-column: 4 / span 1;
-  background-color: var(--pink); 
+  grid-row: 4 / span 1;
+  align-self: flex-end;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--btn-blue);
+  transition: all 0.5s;
+  text-align: center;
   cursor: pointer;
+}
+
+#btn:hover{
+  background-color: var(--btn-hover-blue);
+}
+
+.table{
+  grid-column: 2 / span 3;
+  grid-row: 1 / span 3;
+  margin: 15px;
+  width: 100%;
+
+}
+.table-head{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 3px solid var(--very-dark-grey);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 50px;
+  background-color: var(--btn-blue);
+  transition: all 0.2s; 
+
+}
+
+.table-head:hover{
+  background-color: var(--btn-hover-blue);
+}
+
+table{
+  border-collapse: collapse; 
+  overflow-y: auto;
+  max-height: 320px;
+  display: block;
+}
+td{
+  text-align: center;
+  padding: 15px;
+  transition: all 0.5s;
+  border-bottom: 3px solid var(--very-dark-grey);
+  width: 250px;
+}
+
+
+a:hover{
+  text-decoration: underline;
+}
+
+a.home:hover{
+  text-decoration: none;
+}
+
+tr:last-child td:first-child{
+  border-bottom-left-radius: 15px;
+}
+tr:last-child td:last-child{
+  border-bottom-right-radius: 15px;
+}
+tr:last-child td{
+  border: none;
+}
+td:hover{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+tr:hover{
+  background-color: #777;
 }
 
 form{
   display: none;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: space-evenly;
   flex-direction: column;
-  width: 600px;
+  width: 400px;
   height: 400px;
-  background-color: var(--dark-purple);
-  border: 3px solid white;
   position: absolute;
+  z-index: 99;
   top: 50%;
   left: 50%;
+  font-size: 20px;
   transform: translate(-50%, -50%);
 }
 
-form div{
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  flex-direction: column;
-  align-self: flex-start;
-  margin: 0 30px;
+input[type=text], input[type=number], select {
+  border-radius: 10px;
+  width: 400px;
+  padding: 20px;
   font-size: 20px;
 }
-
 input[type=submit]{
-  background-color: var(--pink);
-  padding: 20px 50px;
-  margin: 30px;
+  padding: 15px 25px;
+  align-self: flex-end;
+  background-color: var(--btn-blue);
+  font-size: 14px;
   border-radius: 10px;
   color: white;
+}
+input[type=submit]:hover{
+  background-color: var(--btn-hover-blue);
 }

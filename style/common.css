@@ -1,5 +1,16 @@
 
 :root{
+
+  --very-dark-grey: #222;
+  --dark-grey: #333;
+  --not-so-dark-grey: #444;
+
+  --dark-blue:rgb(35, 76, 126);
+  --btn-blue:rgb(125, 179, 245);
+  --btn-hover-blue: rgb(78, 108, 148);
+  
+
+
   --very-dark-purple : #2f3662;
   --dark-purple : #4d3e93;
   --purple : #914bbb;
@@ -10,7 +21,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 html{
@@ -22,11 +33,9 @@ body{
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows:50px repeat(5, 1fr) 50px;
   height: 100vh;
-  background-color: var(--very-dark-purple);
+  background-color: var(--very-dark-grey);
   color: white;
 }
-
-
 
 nav{
   grid-row: 1 / span 1;
@@ -34,7 +43,8 @@ nav{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--dark-purple);
+  background-color: var(--dark-grey);
+  /* background-image: linear-gradient(0, #555, #999); */
 }
 
 footer{
@@ -43,16 +53,21 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--dark-purple);
+  background-color: var(--dark-grey);
 }
 
 
 .home{
-  background-color: var(--pink);
+  background-color: var(--btn-blue);
   border-radius: 10px;
-  padding: 0.5vw;
+  padding: 0.5vw 1vw;
   position: relative;
   left: 40%;
+  transition: all 0.3s;
+
+}
+.home:hover{
+  background-color: var(--btn-hover-blue);
 }
 
 a{

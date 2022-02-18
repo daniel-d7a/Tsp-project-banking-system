@@ -151,9 +151,6 @@ app.post("/customers", (req, res) => {
 	const newCustomer = new Customer(req.body);
 	newCustomer.save()
 		.then(() => {
-		res.redirect("customers").catch((err) => {
-			console.log(err);
-			res.render("error");
-		});
+			res.redirect("customers");
 	});
 })

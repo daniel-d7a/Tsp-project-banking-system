@@ -20,9 +20,14 @@ const app = express();
 const database =
 "mongodb+srv://eyad-alsherif:dodomax12345@tsf-project.xjlsh.mongodb.net/tsf-project?retryWrites=true&w=majority";
 
+const port = process.env.PORT || 5000
+
 mongoose
 .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
-.then((result) => app.listen(5000))
+	.then((result) => {
+		app.listen(port)
+		console.log(port);
+	})
 .catch((err) => console.log(err));
 
 

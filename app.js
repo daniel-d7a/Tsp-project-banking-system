@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Customer = require("./models/customer");
 const Transaction = require("./models/transaction");
-const path = require('path')
+const path = require("path");
 const livereload = require("livereload");
 const connectLivereload = require("connect-livereload");
 
@@ -14,28 +14,25 @@ liveReloadServer.server.once("connection", () => {
 	}, 100);
 });
 
-
 const app = express();
 
 const database =
-"mongodb+srv://eyad-alsherif:dodomax12345@tsf-project.xjlsh.mongodb.net/tsf-project?retryWrites=true&w=majority";
+	"mongodb+srv://eyad-alsherif:dodomax12345@tsf-project.xjlsh.mongodb.net/tsf-project?retryWrites=true&w=majority";
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 mongoose
-.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then((result) => {
-		app.listen(port)
+		app.listen(port);
 		console.log(port);
 	})
-.catch((err) => console.log(err));
-
+	.catch((err) => console.log(err));
 
 app.set("view engine", "ejs");
 app.use(connectLivereload());
 app.use(express.static("style"));
 app.use(express.urlencoded({ extended: true }));
-
 
 const bodyParser = require("body-parser");
 
@@ -66,8 +63,8 @@ app.get("/customers", (req, res) => {
 });
 
 app.get("/new-customer", (req, res) => {
-	res.render('new-customer')
-})
+	res.render("new-customer");
+});
 
 app.get("/transactions", (req, res) => {
 	Transaction.find()
@@ -88,13 +85,14 @@ app.get("/single-customer/:id", (req, res) => {
 			Customer.find({ _id: { $ne: id } })
 				.then((allCustomers) => {
 					Transaction.find({
-						$or: [
-							{ to_id: id },
-							{from_id:id}
-						]
+						$or: [{ to_id: id }, { from_id: id }],
 					}).then((customerTransactions) => {
-						res.render("single-customer", { singleCustomer, allCustomers, customerTransactions });
-					})
+						res.render("single-customer", {
+							singleCustomer,
+							allCustomers,
+							customerTransactions,
+						});
+					});
 				})
 				.catch((error) => {
 					console.log(err);
@@ -123,7 +121,7 @@ app.post("/transactions", (req, res) => {
 						// console.log(customer);
 						if (transaction.to_id.toString() === customer._id.toString()) {
 							// console.log("to id is corrrect");
-							transaction['to'] = customer.name.toString();
+							transaction["to"] = customer.name.toString();
 						}
 						if (transaction.from_id.toString() === customer._id.toString()) {
 							// console.log("from id is corrrect");
@@ -135,8 +133,7 @@ app.post("/transactions", (req, res) => {
 					transaction
 						.save()
 						.then(() => {
-							alert("amount sent successfully");
-							res.redirect("/");
+							res.redirect("/transactions");
 						})
 						.catch((err) => {
 							console.log(err);
@@ -147,12 +144,9 @@ app.post("/transactions", (req, res) => {
 	});
 });
 
-
 app.post("/home-page", (req, res) => {
 	const newCustomer = new Customer(req.body);
-	newCustomer.save()
-		.then(() => {
-			// alert("new customer created successfully");
-			res.redirect("/");
+	newCustomer.save().then(() => {
+		res.redirect("/");
 	});
-})
+});
